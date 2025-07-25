@@ -22,7 +22,6 @@ Includes a custom admin panel, JWT authentication, and RESTful APIs for managing
 - [🛠️ Admin Panel](#-admin-panel-credentials)
 - [🔒 Security](#-security-highlights)
 - [📦 Tech Stack](#-tech-stack)
-- [📝 License](#-license)
 
 ---
 
