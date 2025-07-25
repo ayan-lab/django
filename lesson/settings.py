@@ -62,10 +62,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [ 'http://127.0.0.1:5500','http://localhost:5500' ]
+# CORS_ALLOWED_ORIGINS = [ 'http://127.0.0.1:5500','http://localhost:5500' ]
 
-INTERNAL_IPS = [
-'127.0.0.1',
+# INTERNAL_IPS = [
+# '127.0.0.1',
+# ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://django-id12.onrender.com",
 ]
 
 ROOT_URLCONF = 'lesson.urls'
