@@ -87,7 +87,7 @@ PASSWORD: 1234
 GET /store/customers/
 ```
 
-### Get / Update / Delete Customer
+### Get / Update / Delete Customer (Admin only)
 ```http
 GET     /store/customers/<int:id>/
 PUT     /store/customers/<int:id>/
@@ -112,7 +112,7 @@ GET /store/customers/<int:id>/history/
 GET /store/products/
 ```
 
-### Get / Update / Delete Product
+### Get / Update / Delete Product (Admin only)
 ```http
 GET     /store/products/<int:id>/
 PUT     /store/products/<int:id>/
@@ -172,7 +172,7 @@ DELETE  /store/carts/<int:id>/items/<int:item_id>/
 GET /store/collections/
 ```
 
-### Get, Update, or Delete a Collection
+### Get, Update, or Delete a Collection (Admin)
 ```http
 GET     /store/collections/<int:pk>/
 PUT     /store/collections/<int:pk>/
@@ -192,7 +192,7 @@ POST /store/collections/
 GET /store/orders/
 ```
 
-### Order Details
+### Order Details (Authentication)
 ```http
 GET     /store/orders/<int:id>/
 PUT     /store/orders/<int:id>/
