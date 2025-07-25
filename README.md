@@ -1,220 +1,212 @@
+# 🛒 E-Commerce Backend API (Django)
 
-# E-Commerce Application Backend
+A secure and modular eCommerce backend built with Django and Django REST Framework.  
+Includes a custom admin panel, JWT authentication, and RESTful APIs for managing users, products, orders, promotions, and more.
 
-# Features
+---
 
-### Core Functionality
+## 🚀 Live Demo
 
--- User Registration & Login with JWT Authentication
+[![Live Site](https://img.shields.io/badge/Visit%20Live%20App-Render-blue?style=for-the-badge)](https://django-id12.onrender.com)
 
--- Role-Based Access Control using Django Groups & Permissions
+---
 
--- Secure API Endpoints with custom permissions and token protection
+## 📚 Table of Contents
 
-### E-commerce Modules
+- [✅ Features](#-features)
+- [🔐 Authentication](#-authentication)
+- [👥 Customers](#-customers)
+- [🛍️ Products](#-products)
+- [🛒 Cart](#-cart)
+- [📦 Orders](#-orders)
+- [🛠️ Admin Panel](#-admin-panel-credentials)
+- [🔒 Security](#-security-highlights)
+- [📦 Tech Stack](#-tech-stack)
+- [📝 License](#-license)
 
--- Product Management (CRUD for products, linked to collections, tags, promotions)
+---
 
--- Order Management (create, view, update, cancel orders)
+## ✅ Features
 
--- Collection Support (product groupings)
+### 🔸 Core Functionality
+- User Registration & Login with JWT Authentication
+- Role-Based Access Control (RBAC) using Django Groups & Permissions
+- Secure API Endpoints with token protection and custom permissions
 
--- Tag System (categorize products with tags)
+### 🛍️ E-Commerce Modules
+- Product Management (CRUD + images, collections, tags, promotions)
+- Order Management (Create, track, update, cancel)
+- Collection & Tag Support
+- Promotion System
 
--- Promotion System (attach discounts/promotions to products or collections)
+### 🔐 Authentication & Security
+- JWT Access & Refresh Tokens
+- Admin-only endpoints protected via role-based permissions
+- Secured data access by user identity
 
-### Authentication & Security
--- JWT-based Access & Refresh Tokens
+### 🛠️ Admin Panel
+- Custom Django Admin Dashboard
+- Manage:
+  - Users
+  - Products & Product Images
+  - Orders
+  - Tags, Collections, Promotions
 
--- Role-based permissions (Admin vs Regular User)
+### 🌐 REST API Endpoints
+- `/auth/` - Auth operations (JWT)
+- `/store/products/` - Product catalog
+- `/store/customers/` - Customer details
+- `/store/orders/` - Orders & status
+- `/store/carts/` - Shopping cart logic
+- `/store/promotions/`, `/tags/`, etc.
 
--- Secured endpoints (only authorized users can access protected routes)
+---
 
-### Admin Panel
--- Custom Admin Interface for:
+## 🔐 Authentication
 
--- Managing Users, Products, Orders
-
--- Managing Tags, Collections, Promotions
-
--- Simplified and styled admin dashboard
-
-### API Endpoints
-RESTful APIs for:
-
--- Users
-
--- Products
-
--- Orders
-
--- Promotions
-
--- Tags
-
--- Collections
-
-
-## 🚀[Click here to checkout the live Application](https://django-id12.onrender.com)
-
-# API Reference
-
-### Admin Panel Credential
-
-```http
-  USERNAME : admin
-  PASSWORD : 1234
-```
-
-## Auth 
-#### Create Token
+### 🔸 Admin Panel Credentials
 
 ```http
-  POST /auth/jwt/create
+USERNAME: admin
+PASSWORD: 1234
 ```
-#### Regenerate Token
+
+### 🔸 Auth Endpoints
+
+| Method | Endpoint                | Description              |
+|--------|-------------------------|--------------------------|
+| POST   | `/auth/jwt/create/`     | Create access/refresh tokens |
+| POST   | `/auth/jwt/refresh/`    | Regenerate access token |
+| GET    | `/auth/users/`          | Get all users (Admin only) |
+
+---
+
+## 👥 Customers
+
+### Get All Customers
 ```http
-  POST /auth/jwt/refresh
+GET /store/customers/
 ```
-#### Get all users
+
+### Get / Update / Delete Customer
 ```http
-  POST /auth/users
+GET     /store/customers/<int:id>/
+PUT     /store/customers/<int:id>/
+DELETE  /store/customers/<int:id>/
 ```
 
-## Customers
-#### Get all Customers
-
+### View Customer History
 ```http
-  GET /store/customers/
+GET /store/customers/<int:id>/history/
 ```
-#### Customer Detail
 
+| Header        | Value         |
+|---------------|---------------|
+| Authorization | Bearer JWT_TOKEN |
+
+---
+
+## 🛍️ Products
+
+### Get All Products
 ```http
-  GET       /store/customers/<int:id>
-  PUT       /store/customers/<int:id>
-  DELETE    /store/customers/<int:id>
-  GET       /store/customers/<int:id>/history
+GET /store/products/
 ```
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `id` | `string` | **Required**. Id of item to fetch |
 
-| Header | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `JWT Token` | `string` | **Required**. Authentication |
-
-
-
-## Product
-#### Get all Products
-
+### Get / Update / Delete Product
 ```http
-  GET /store/products/
+GET     /store/products/<int:id>/
+PUT     /store/products/<int:id>/
+DELETE  /store/products/<int:id>/
 ```
 
-#### Get a Product
+### Create Product (Admin)
 ```http
-  GET /store/products/<int:id>
+POST /store/products/
 ```
-#### Post/Put/Delete a Product
+
+### Product Images
 ```http
-  GET       /store/products/<int:id>
-  POST      /store/products/<int:id>
-  PUT       /store/products/<int:id>
-  DELETE    /store/products/<int:id>
+GET     /store/products/<int:id>/images/
+POST    /store/products/<int:id>/images/
+PUT     /store/products/<int:id>/images/<int:image_id>/
+DELETE  /store/products/<int:id>/images/<int:image_id>/
 ```
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `id` | `string` | **Required**. Id of item to fetch |
 
-| Header | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `JWT Token` | `string` | **Required**. Authentication |
+---
 
+## 🛒 Cart
 
-#### Get Product images
-
+### Create Cart
 ```http
-  GET /store/products/<int:id>/images
+POST /store/carts/
 ```
-#### Post/Put/Delete Product images
 
+### Modify Cart
 ```http
-  GET       /store/products/<int:id>/images/<int:id>
-  POST      /store/products/<int:id>/images/<int:id>
-  PUT       /store/products/<int:id>/images/<int:id>
-  DELETE    /store/products/<int:id>/images/<int:id>
+PUT     /store/carts/<int:id>/
+DELETE  /store/carts/<int:id>/
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-
-
-## Cart
-#### Create Cart
-
+### Cart Items
 ```http
-  POST      /store/carts
+GET     /store/carts/<int:id>/items/
+POST    /store/carts/<int:id>/items/
 ```
-#### Modify Cart
 
+### Modify Cart Item
 ```http
-  PUT         /store/carts/<int:id>
-  DELETE      /store/carts/<int:id>
-
+GET     /store/carts/<int:id>/items/<int:item_id>/
+PUT     /store/carts/<int:id>/items/<int:item_id>/
+DELETE  /store/carts/<int:id>/items/<int:item_id>/
 ```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of cart to fetch |
 
-#### Cart Items
+---
+
+## 📦 Orders
+
+### Get All Orders (Admin only)
 ```http
-  GET    /store/carts/<int:id>/items
-  POST    /store/carts/<int:id>/items
+GET /store/orders/
 ```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of cart to fetch |
 
-#### Modify Cart item 
-
+### Order Details
 ```http
-  GET         /store/carts/<int:id>/items/<int:item_id>
-  PUT         /store/carts/<int:id>/items/<int:item_id>
-  DELETE      /store/carts/<int:id>/items/<int:item_id>
-```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of cart to fetch |
-| `item_id`      | `string` | **Required**. Id of item to fetch |
-
-
-## Orders
-
-#### Get all Orders
-```http
-  GET         /store/orders
-```
-| Header | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `JWT Token` | `string` | **Required**. Admin only |
-
-#### Order Detail
-
-```http
-  GET            /store/orders/<int:id>
-  PUT            /store/orders/<int:id>
-  DELETE         /store/orders/<int:id>
+GET     /store/orders/<int:id>/
+PUT     /store/orders/<int:id>/
+DELETE  /store/orders/<int:id>/
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of order to fetch |
+| Header        | Value         |
+|---------------|---------------|
+| Authorization | Bearer JWT_TOKEN |
 
+---
 
-| Header | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `JWT Token` | `string` | **Required**. Authentication required|
+## 🔒 Security Highlights
 
+- JWT-secured endpoints using `djangorestframework-simplejwt`
+- Role-based permission model (Admins vs Authenticated Users)
+- Custom permissions for resource ownership
+- Admin panel access restricted
+
+---
+
+## 📦 Tech Stack
+
+- Django
+- Django REST Framework
+- djangorestframework-simplejwt (JWT)
+- PostgreSQL / SQLite
+- Docker (optional for deployment)
+- Render for hosting
+
+---
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+> Built with ❤️ using Django & DRF.
