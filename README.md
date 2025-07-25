@@ -162,6 +162,29 @@ DELETE  /store/carts/<int:id>/items/<int:item_id>/
 
 ---
 
+
+---
+
+## 🗂️ Collections
+
+### Get All Collections
+```http
+GET /store/collections/
+```
+
+### Get, Update, or Delete a Collection
+```http
+GET     /store/collections/<int:pk>/
+PUT     /store/collections/<int:pk>/
+DELETE  /store/collections/<int:pk>/
+```
+
+### Create a New Collection (Admin)
+```http
+POST /store/collections/
+```
+
+
 ## 📦 Orders
 
 ### Get All Orders (Admin only)
@@ -201,4 +224,5 @@ DELETE  /store/orders/<int:id>/
 - Render for hosting
 
 ---
-> Built using Django & DRF.
+
+> Built with Django & DRF.
