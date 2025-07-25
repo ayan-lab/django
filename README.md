@@ -202,11 +202,4 @@ DELETE  /store/orders/<int:id>/
 - Render for hosting
 
 ---
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-> Built with ❤️ using Django & DRF.
+> Built using Django & DRF.
