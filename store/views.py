@@ -69,9 +69,9 @@ def customer_detail(request):
     
 class ProductImageViewset(viewsets.ModelViewSet):
     serializer_class = ProductImageSerializer
-    
+       
     def get_serializer_context(self):
-        return {'product_id': self.kwargs['product_pk']}
+        return {'product_id': self.kwargs['product_pk'], 'request': self.request}
     
     def get_queryset(self):
         # /products/(product_pk)/images/(pk)

@@ -23,17 +23,34 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = ['id', 'phone', 'birth_date', 'user_id', 'membership']
     
     
-class ProductImageSerializer(serializers.ModelSerializer):
+# class ProductImageSerializer(serializers.ModelSerializer):
     
+#     def create(self, validated_data):
+#         product_id = self.context['product_id']
+#         return ProductImage.objects.create(product_id=product_id, **validated_data)
+    
+#     class Meta:
+#         model = ProductImage
+#         fields = ['id','image']
+    
+    
+class ProductImageSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField(method_name='get_image_url')
+
     def create(self, validated_data):
         product_id = self.context['product_id']
         return ProductImage.objects.create(product_id=product_id, **validated_data)
-    
+
+    def get_image_url(self, obj):
+        request = self.context.get('request')
+        if obj.image and hasattr(obj.image, 'url'):
+            return request.build_absolute_uri(obj.image.url) if request else obj.image.url
+        return None
+
     class Meta:
         model = ProductImage
-        fields = ['id','image']
-    
-    
+        fields = ['id', 'image', 'image_url']
+        
         
         
 class ProductSerializer(serializers.ModelSerializer):
@@ -59,7 +76,7 @@ class ProductSerializer(serializers.ModelSerializer):
     # collection = CollectionSerializer()
     
     def calculate_tax(self, product: Product):
-        return product.unit_price * Decimal(1.1)
+        return product.unit_price * Decimal(1.8)
     
     
     

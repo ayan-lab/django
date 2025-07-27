@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
 import os
+
+load_dotenv() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,12 +96,12 @@ WSGI_APPLICATION = 'lesson.wsgi.application'
 
 DATABASES = {
     "default": {
-        'ENGINE': 'django.db.backends.postgresql',
-        "NAME": "storeroot",
-        "USER": "storeroot_user",
-        "PASSWORD": "B3TMqMvpHGwqGGNi54ZWVHSfQ9K2kPFE",
-        "HOST": "dpg-d1t6tpidbo4c73815thg-a.oregon-postgres.render.com",
-        "PORT": "5432",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": os.environ.get("DB_HOST"),
+        "PORT": os.environ.get("DB_PORT"),
     }
 }
 
@@ -148,9 +151,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
-    'DEFAULT_AUTHENTICATION_CALSS':(
+    'DEFAULT_AUTHENTICATION_CLASSES':(
          'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
