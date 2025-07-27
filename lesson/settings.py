@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-$l_+m(*q)3x@(47mndoy2z&(*v!cc@wos=$&j6*#1z-8@!%dqb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-id12.onrender.com']
 
 
 # Application definition
@@ -65,7 +65,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ALLOWED_ORIGINS = [ 'http://127.0.0.1:5500','http://localhost:5500' ]
+CORS_ALLOWED_ORIGINS = [ 'https://calm-bavarois-2444e3.netlify.app' ]
 
 INTERNAL_IPS = [
 '127.0.0.1',
@@ -161,7 +161,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
-   'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+   'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
 }
 
 
