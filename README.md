@@ -29,9 +29,10 @@ Each app follows Django's standard practices for models, views, serializers, and
 # 🔑 Admin Access
 
 Use the following credentials to log in as an administrator:
-```http
-   /admin
-```
+| Endpoint | Description |
+|----------|----------|
+| `/admin` | access to admin panel |
+
 
 | Username | Password |
 |----------|----------|
