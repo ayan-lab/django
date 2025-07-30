@@ -123,11 +123,11 @@ POST /store/products   # Admin Only
 
 ### 🛒 Product Details
 ```http
-GET     /api/items/<int:id>
-POST    /api/items/<int:id>
-PUT     /api/items/<int:id>
-PATCH   /api/items/<int:id>
-DELETE  /api/items/<int:id>
+GET     /store/products/<int:id>
+POST    /store/products/<int:id>
+PUT     /store/products/<int:id>
+PATCH   /store/products/<int:id>
+DELETE  /store/products/<int:id>
 ```
 
 ### 🖼️ Manage Product Images (Admin Only)
